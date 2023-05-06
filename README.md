@@ -298,6 +298,144 @@ for i in student:#key 값만 출력됨
 ```
 
 
+# Chapter 11. 파일 다루기와 예외 처리
+
+파이썬에는 FileNotFoundError, ZeroDivisionError, IndexError 등등 기본적으로 내장 예외들이 있음
+
+## Python 에러 종류
+
+1. ValueError: 부적절한 값을 가진 인자를 받았을 때 발생
+2. IndexError: 인덱스 범위를 벗어나는 경우에 발생
+3. SyntaxError: 파이썬 문법 오류가 발생하는 경우
+4. NameError: 지역변수, 전역 변수 이름을 찾을 수 없는 경우
+5. ZeroDivisionError: 0으로 나누려는 경우에 발생
+6. FileNotFoundError: 파일이나 디렉토리에 접근하려 할 때, 해당 파일이나 디렉토리가 없는 경우 발생
+7. TypeError: 잘못된 타입을 전달했을 때 발생
+8. AttributeError: 클래스(모듈)의 객체에 해당하는 메서드나 속성을 잘못 호출하거나 대입했을 때 발생
+9. KeyError: 딕셔너리에서 접근하려는 키 값이 없을 때 발생
+10. OverFlowError: 오버플로우가 발생하는 경우
+
+## 오류 예외 처리 기법
+
+### try, except문
+
+```python
+# 실행할 코드
+try:
+	...
+
+# 에러가 발생하였을 때 실행할 코드
+# 발생 오류 종류: FileNotFoundError, ZeroDivisionError, IndexError, ...
+except [발생 오류[as 오류 메시지 변수]]:
+	...
+
+# 에러가 발생하지 않았을 때 실행할 코드
+else:
+	...
+```
+
+### try … finally
+
+- finally 절은 try문 수행 도중에 예외 발생 여부에 상관없이 항상 수행된다.
+- 보통 finally 절은 사용한 리소스를 close해야 할 때에 많이 사용
+
+```python
+f = open('test.txt', 'w')
+try:
+	...
+finally:
+	f.close()
+# try문을 수행한 후 예외 발생 여부와 상관없이 f.close()로 열린 파일을 닫는다.
+```
+
+### 여러 개의 오류 처리하기
+
+```python
+try:
+	...
+except 발생 오류 1:
+	...
+except 발생 오류 2:
+	...
+```
+
+## 오류 일부러 발생시키기
+
+- 프로그램이 작동하다가 의도하지 않게 돌아가는 것을 방지하기 위해 사용
+
+```python
+try:
+    a = int(input("1~5 까지 숫자 입력 : "))
+
+    if a < 1 or a > 5:
+        raise
+
+    print("a")
+except:
+    print("에러 발생")
+```
+
+```python
+raise 발생 오류
+```
+
+```python
+raise Exception("에러 메시지")
+```
+
+### 파일 읽기 / 쓰기
+
+```python
+파일 열기 모드: 'r', 'w', 'x'
+f = open("파일 이름", '파일 열기 모드', [encoding = '인코딩 방식'])
+
+# 파일을 더이상 사용하지 않으면 닫아주어야함
+f.close()
+```
+
+with: 파일을 열고 닫는 것을 자동으로 처리해준다
+
+```python
+with open("파일 이름", '파일 열기 모드') as 파일의 별칭:
+	수행할 작업
+```
+
+### 파일 읽기
+
+```python
+f = open("test.txt", 'r', encoding = 'UTF-8')
+
+# read(): 파일의 전체 내용을 리턴
+print(f.read())
+
+# readline(): 개행 문자 전까지만 파일의 내용을 리턴
+print(f.readline())
+
+# readlines(): 파일의 모든 줄을 읽어서 각각의 줄을 요소로 갖는 리스트를 리턴
+print(f.readlines())
+
+f.close()
+```
+
+### 파일 쓰기
+
+```python
+# 'w'는 기존에 파일에 있던 내용을 전부 삭제하고 새로 씀
+f = open("test.txt", 'w', encoding = 'UTF-8')
+
+f.write("Hello")
+
+f.close()
+```
+
+```python
+# 'a'는 기존에 파일에 있던 내용에 이어서 작성(append)
+f = open("test.txt", 'a', encoding = 'UTF-8')
+
+f.write("Hello")
+
+f.close()
+
 
 
 
