@@ -297,7 +297,117 @@ for i in student:#key 값만 출력됨
     print(i)
 ```
 
+---
 
+
+# Chapter 10
+## Class
+
+### 기본구조
+
+```python
+class 클래스명:     // 클래스명 첫글자는 대문자로 작성
+	def __init__(self, 속성1, 속성2):    // self를 첫번째 인자로 하지 않으면 문제가 발생
+		self.속성1 = 속성1      // 초기화 과정
+		self.속성2 = 속성2      // 초기화 과정
+
+	def 함수명1(self, 매개변수):
+```
+
+### 인스턴스 생성
+
+```python
+class Student:
+	def __init__(self, name, major, is_graduated):
+		self.name = name
+		self.major = major
+		self.is_graduated = is_graduated
+		
+	# Method: 클래스 안에 구현된 함수
+	def study(self):
+		print(f'{self.name} 학생은 공부중입니다.')
+
+# 인스턴스 생성
+student_1 = Student('kwu', '소프트웨어학부', False)
+
+# 각 속성 출력
+print(student_1.name)
+
+# 메소드 출력
+student_1.study()
+```
+
+### 기본값 설정
+
+```python
+class Student:
+	def __init__(self, name, major):
+		self.name = name
+		self.major = major
+		self.is_graduated = False
+		
+	# Method: 클래스 안에 구현된 함수
+	def study(self):
+		print(f'{self.name} 학생은 공부중입니다.')
+
+	def edit_major(self, new_major):
+		self.major = new_major
+
+# 인스턴스 생성
+student_1 = Student('kwu1', '소프트웨어학부')
+
+print(student_1.is_graduated)
+
+# 인스턴스 속성을 수정. 직접적인 수정은 좋지 않은 방법 -> 함수를 만들어서 수정하는 것이 좋음
+student_1.major = '전자공학과'
+
+```
+
+## 상속
+
+```python
+class 클래스 이름(상속할 클래스 이름)
+```
+
+### super()
+
+- 부모 클래스의 임시적인 객체를 반환하여 부모 클래스의 메소드를 사용할 수 있게 해주는 함수
+- 부모 클래스 정의한 내용을 가져옴
+- super().__init__(): 자식 클래스에도 부모 클래스의 인스턴스 속성과 동일한 속성이 생성
+
+```python
+class ForeignStudent(Student):
+	def __init__(self, name, major, country):
+		super().__init__(name, major)
+		self.country = country
+
+foreign_student_1 = ForeignStudent('kw', '국어국문학과', '미국')
+```
+
+### 메소드 오버라이딩
+
+- 부모 클래스에 있는 메소드를 동일한 이름으로 다시 만드는 것
+- 부모 클래스의 메소드 대신 오버라이딩한 메소드가 호출된다.
+
+```python
+class ForeignStudent(Student):
+	def __init__(self, name, major, country):
+		super().__init__(name, major)
+		self.country = country
+		
+	def study(self):
+		print(f'{self.name} is studying.')
+```
+
+### 클래스 활용
+
+```python
+# 다른 파일에 있는 특정 클래스를 사용하고 싶을 때
+import classes from Student, ForeignStudent
+
+# 다른 파일에 있는 모든 클래스를 사용하고 싶을 때
+import classes from *
+```
 
 
 
