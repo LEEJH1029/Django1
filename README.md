@@ -638,4 +638,51 @@ f.close()
 
 
 
+##  장고 실습 chapter 1 
+-------
+ ###  django의 특징
+*  프로젝트안에 여러 앱으로 구성 됨(앱은 프로젝트를 구성하는 모듈을 의미)
+*  mtv 패턴:  자바의 mvc패턴과 유사하나 이름만 조금 변경된 느낌
+model- view -controller(java)==model-template-view(python)
+*   Model - 데이터 관리
+    Template - 데이터 출력 역할
+    View- 컨트롤러 역할
+----
+ ###  django 사용법
+
+ ## 프로젝트
+*  생성: django-admin startproject mytestsite ( django-admin startproject 프로젝트명) config.이 default
+*  가상환경에 설정하는 이유:  global dependancy는 좋지 않은 방식이므로 이를 막기 위해서 
+
+*  실행:
+```python
+ python manage.py runserver  **서버를 실행하려면 생성한 프로젝트(mytestsite)로 이동한 후 실행
+``` 
+ex) cd  mytestsite -  python manage.py runserver
+ ## 앱 생성
+* django-admin startapp (이름) 
+  
+setting.py에 항상 새롭게 추가된 앱을 추가 해줘야됨
+
+## templates 
+* 새로 만든 앱에  'templates' 폴더 생성 
+
+-----
+### http
+
+* GET- read
+
+서버에게 Resource를 보내도록 요청하는데 사용 (서버의 Resource를 읽음)
+
+* PUT- create
+
+서버에 문서를 쓸때 사용 (GET과 반대)
+
+* POST- update
+
+Server에 Input Data를 보내기 위함 (HTML form에 많이 사용)
+
+* DELETE- delete
+
+요청 Resource를 삭제하도록 요청
 
