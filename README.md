@@ -686,3 +686,39 @@ Server에 Input Data를 보내기 위함 (HTML form에 많이 사용)
 
 요청 Resource를 삭제하도록 요청
 
+---
+
+# 챕터9. 백엔드 서비스 배포하기
+
+# 1. 배포를 위한 장고 프로젝트 설정하기
+
+- config - [settings.py](http://settings.py) 분리
+- https://docs.djangoproject.com/ko/4.2/howto/deployment/
+- `DEBUG = False`
+- `SERCRET_KEY`: 키 값을 공개하면 안됨
+- `init.py`: 파이썬 패키지로 인식하기 위한 파일
+- `base.py`: 운영환경과 상관없이 바뀌지 않는 부분
+    - BASE_DIR = Path(file).resolve().parent.parent.parent
+- `development.py`: 개발환경. 서버
+    - DEBUG. ALLOWED_HOSTS. DATABASES. STATIC_ROOT
+- `local.py`: 작업하는 환경
+    - DEBUG. ALLOWED_HOSTS. INSTALLED_APPS. DATABASES. STATICFILES_DIRS
+- `production.py`: 운영 환경
+    - DEBUG. ALLOWED_HOSTS. DATABASES. STATICFILES_DIRS
+- `INSTALLED_APPS`: django 앱과 사용자 앱 분리
+- 설치해야하는 패키지들을 `requirements`에 저장
+    - pip freeze > requirements.txt
+    - pip install -r requirements.txt
+
+# 2. AWS에 프로젝트 배포하기
+
+- CentOS 웹 서버 생성: https://itadventure.tistory.com/372
+- ubuntu 웹 서버 생성: https://king-ja.tistory.com/99
+- pyenv 설치: https://jinmay.github.io/2019/03/16/linux/ubuntu-install-pyenv-1/
+- AWS에 gunicorn 연결: [https://velog.io/@han0707/AWS를-이용해-배포하기](https://velog.io/@han0707/AWS%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0)
+
+---
+
+### 강의 github
+
+https://github.com/3chamchi/project-lion-backend-django
