@@ -690,7 +690,7 @@ Server에 Input Data를 보내기 위함 (HTML form에 많이 사용)
 
 # 챕터9. 백엔드 서비스 배포하기
 
-# 1. 배포를 위한 장고 프로젝트 설정하기
+## 1. 배포를 위한 장고 프로젝트 설정하기
 
 - config - [settings.py](http://settings.py) 분리
 - https://docs.djangoproject.com/ko/4.2/howto/deployment/
@@ -710,7 +710,7 @@ Server에 Input Data를 보내기 위함 (HTML form에 많이 사용)
     - pip freeze > requirements.txt
     - pip install -r requirements.txt
 
-# 2. AWS에 프로젝트 배포하기
+## 2. AWS에 프로젝트 배포하기
 
 - CentOS 웹 서버 생성: https://itadventure.tistory.com/372
 - ubuntu 웹 서버 생성: https://king-ja.tistory.com/99
